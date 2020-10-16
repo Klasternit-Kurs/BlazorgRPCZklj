@@ -1,0 +1,26 @@
+﻿@page "/"
+@using grpcTest;
+@inject ProbniServis.ProbniServisClient psk
+
+<p>
+	<EditForm Model="_kli" OnSubmit="grpcGOOO">
+		<InputText @bind-Value="_kli.Nesto"/>
+		<InputNumber @bind-Value="_kli.NekiBroj"/>
+		<button type="submit">GO!</button>
+	</EditForm>
+</p>
+
+<p>@_ser.Nesto</p>
+<p>@_ser.NekiBroj</p>
+
+@code
+{
+	ProbnaPoruka _kli = new ProbnaPoruka();
+	ProbnaPoruka _ser = new ProbnaPoruka();
+
+	private async Task grpcGOOO()
+	{
+		_ser = await psk.ProbniPozivAsync(_kli);
+		StateHasChanged();
+	}
+}

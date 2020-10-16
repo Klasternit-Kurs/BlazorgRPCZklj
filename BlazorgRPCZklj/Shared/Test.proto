@@ -1,0 +1,24 @@
+﻿syntax = "proto3";
+option csharp_namespace="grpcTest";
+package test;
+
+service ProbniServis {
+	rpc ProbniPoziv (ProbnaPoruka) returns (ProbnaPoruka);
+	rpc Adresa (ProbnaPoruka) returns (AdresaPoruka);
+}
+
+message ProbnaPoruka {
+	string Nesto = 1;
+	int32 NekiBroj = 2;
+}
+
+message OsobaPoruka {
+	string Ime = 1;
+	string Prezime = 2;
+	AdresaPoruka Adresa = 3;
+}
+
+message AdresaPoruka {
+	string Ulica = 1;
+	string Broj = 2;
+}
